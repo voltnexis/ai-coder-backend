@@ -1,9 +1,12 @@
 import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
+import cors from "cors"; // <-- import cors
 
 dotenv.config();
 const app = express();
+
+app.use(cors({origin: "https://voltedgebuilds.github.io/codexaura"})); // <-- allow all origins for now
 app.use(express.json());
 
 app.post("/chat", async (req, res) => {
