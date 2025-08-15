@@ -21,7 +21,7 @@ app.post("/chat", async (req, res) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "qwen/qwen2.5-coder-32b-instruct:free",
+        model: "qwen/qwen-2.5-coder-32b-instruct:free",
         messages: [
           { role: "system", content: "You are a helpful AI programming assistant." },
           { role: "user", content: message }
