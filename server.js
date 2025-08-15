@@ -29,10 +29,14 @@ app.post("/chat", async (req, res) => {
     });
 
     const data = await response.json();
-    res.json({ reply: data.choices?.[0]?.message?.content || "No reply" });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+    console.log("OpenRouter Response:", data); // <-- Add this
+
+    if (!data.choices || data.choices.length === 0) {
+      return res.status(500).json({ error: "No choices returned", raw: data });
+    }
+
+    res.json({ reply: data.choices[0].message.content });
+
 });
 
 const PORT = process.env.PORT || 3000;
