@@ -7,10 +7,11 @@ const app = express();
 app.use(express.json());
 
 app.post("/chat", async (req, res) => {
-  const { message } = req.body;
-  if (!message) {
-    return res.status(400).json({ error: "Message is required" });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
+
+  const { message } = req.body;
 
   try {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -29,7 +30,7 @@ app.post("/chat", async (req, res) => {
     });
 
     const data = await response.json();
-    console.log("OpenRouter Response:", data); // <-- Add this
+    console.log("OpenRouter Response:", data); // log full response
 
     if (!data.choices || data.choices.length === 0) {
       return res.status(500).json({ error: "No choices returned", raw: data });
@@ -37,9 +38,11 @@ app.post("/chat", async (req, res) => {
 
     res.json({ reply: data.choices[0].message.content });
 
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(10000, () => {
+  console.log("Server is running on port 10000");
 });
