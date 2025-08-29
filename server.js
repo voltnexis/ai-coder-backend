@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ["https://voltedgebuilds.github.io"],
+  origin: ["https://voltnexis.github.io"],
   methods: ["POST"],
   allowedHeaders: ["Content-Type", "Authorization"]
 })); // <-- allow all origins for now
