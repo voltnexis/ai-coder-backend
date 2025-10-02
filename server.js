@@ -248,6 +248,13 @@ const MODELS = {
     cost: "free",
     category: "lightweight",
     system: "You are Llama 3.2 3B, an AI assistant created by Meta. You are a helpful programming assistant."
+  },
+  "venice-uncensored": {
+    id: "cognitivecomputations/dolphin-mistral-24b-venice-edition:free",
+    name: "Venice Uncensored",
+    cost: "free",
+    category: "lightweight",
+    system: "You are Venice, an AI assistant created by Meta. You are a helpful programming assistant."
   }
 };
 
